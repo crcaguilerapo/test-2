@@ -1,0 +1,114 @@
+{
+	"info": {
+		"_postman_id": "7c87b04f-017c-450b-9acf-8992a08921a5",
+		"name": "PayU",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "37365728"
+	},
+	"item": [
+		{
+			"name": "pay",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"buyerInfo\": \"John Doe, john.doe@example.com\",\r\n  \"checkoutId\": \"checkout12345\",\r\n  \"creditCardInfo\": {\r\n    \"cardNumber\": \"4111111111111111\",\r\n    \"expiryDate\": \"12/25\",\r\n    \"cvv\": \"123\",\r\n    \"cardHolderName\": \"John Doe\"\r\n  },\r\n  \"paymentOrders\": [\r\n    {\r\n      \"sellerAccount\": \"seller1@example.com\",\r\n      \"amount\": \"100.00\",\r\n      \"currency\": \"USD\",\r\n      \"paymentOrderId\": \"order001\",\r\n      \"paymentOrderStatus\": \"EXECUTING\"\r\n    },\r\n    {\r\n      \"sellerAccount\": \"seller2@example.com\",\r\n      \"amount\": \"50.00\",\r\n      \"currency\": \"USD\",\r\n      \"paymentOrderId\": \"order002\",\r\n      \"paymentOrderStatus\": \"EXECUTING\"\r\n    },\r\n    {\r\n      \"sellerAccount\": \"seller3@example.com\",\r\n      \"amount\": \"75.00\",\r\n      \"currency\": \"USD\",\r\n      \"paymentOrderId\": \"order003\",\r\n      \"paymentOrderStatus\": \"EXECUTING\"\r\n    }\r\n  ]\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/payments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "antifraud-service",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:1080/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "1080",
+					"path": [
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "get payment",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/v1/payments/checkout12345",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"payments",
+						"checkout12345"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update status order",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"paymentOrderId\": \"order003\",\r\n    \"paymentOrderStatus\": \"SUCCESS\" \r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/v1/payments",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"v1",
+						"payments"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

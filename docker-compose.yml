@@ -1,0 +1,36 @@
+
+services:
+  mock-server:
+    build:
+      context: .
+      dockerfile: Dockerfile-mockserver
+    container_name: mockserver_container
+    ports:
+      - "1080:1080"
+    networks:
+      - app
+  localstack:
+    image: localstack/localstack:3.3
+    environment:
+      AWS_SQS_REGION: us-east-2
+    ports:
+      - "4566:4566"
+    entrypoint: /bin/sh -c "docker-entrypoint.sh && awslocal sqs create-queue --queue-name bank-service --region us-east-2"
+    networks:
+      - app
+  db:
+    image: postgres:latest
+    container_name: payment_platform_db
+    environment:
+      POSTGRES_USER: app
+      POSTGRES_PASSWORD: app_password
+      POSTGRES_DB: payment_platform
+    ports:
+      - "5432:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+volumes:
+  db_data:
+
+networks:
+  app:

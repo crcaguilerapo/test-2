@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: paymentPlatform
+
+database:
+  url: "jdbc:postgresql://localhost:5432/payment_platform"
+  user: "app"
+  password: "app_password"
+
+aws:
+  sqs:
+    accessKeyId: "fake"
+    secretAccessKey: "fake"
+    region: "us-east-2"
+    url: "http://localhost:4566"
+
+third-party:
+  anti-fraud-service:
+    url: "http://localhost:1080"
+  bank-service:
+    url: "http://localhost:4566/000000000000/bank-service"

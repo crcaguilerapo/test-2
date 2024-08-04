@@ -1,0 +1,14 @@
+[
+  {
+    "httpRequest": {
+      "path": "/",
+      "method": "POST"
+    },
+    "httpResponse": {
+      "statusCode": 200,
+      "body": {
+        "isFraudulent": false
+      }
+    }
+  }
+]
